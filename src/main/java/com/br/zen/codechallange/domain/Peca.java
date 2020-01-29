@@ -2,22 +2,31 @@ package com.br.zen.codechallange.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Peca implements Serializable {
 	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
-	private Double pesoLoquido;
+	private Double pesoLiquido;
 	private Double pesoBruto;
 	
 	public Peca() {
 		
 	}
 
-	public Peca(Integer id, String nome, Double pesoLoquido, Double pesoBruto) {
+	public Peca(Integer id, String nome, Double pesoLiquido, Double pesoBruto) {
 		super();
 		this.id = id;
 		this.nome = nome;
-		this.pesoLoquido = pesoLoquido;
+		this.pesoLiquido = pesoLiquido;
 		this.pesoBruto = pesoBruto;
 	}
 
@@ -37,12 +46,12 @@ public class Peca implements Serializable {
 		this.nome = nome;
 	}
 
-	public Double getPesoLoquido() {
-		return pesoLoquido;
+	public Double getPesoLiquido() {
+		return pesoLiquido;
 	}
 
-	public void setPesoLoquido(Double pesoLoquido) {
-		this.pesoLoquido = pesoLoquido;
+	public void setPesoLiquido(Double pesoLiquido) {
+		this.pesoLiquido = pesoLiquido;
 	}
 
 	public Double getPesoBruto() {
