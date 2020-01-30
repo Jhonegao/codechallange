@@ -8,17 +8,16 @@ import org.springframework.stereotype.Service;
 import com.br.zen.codechallange.domain.Peca;
 import com.br.zen.codechallange.repositories.PecaRepository;
 
+import javassist.tools.rmi.ObjectNotFoundException;
+
 @Service
 public class PecaService {
 
 	@Autowired
 	private PecaRepository pecaRepo;
 	
-	public Peca searchById(Integer id) {
-
+	public Peca searchById(Integer id) throws ObjectNotFoundException 	{
 		Optional<Peca> obj = pecaRepo.findById(id);
-		
-		return obj.orElse(null);
-		
+		return obj.orElseThrow(() -> new ObjectNotFoundException("Não Cadastrado Id: " + id + ", Peca:" + Peca.class.getName()));		
 	}
 }

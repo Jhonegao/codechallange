@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Peca implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -23,6 +25,8 @@ public class Peca implements Serializable {
 	private Double pesoLiquido;
 	private Double pesoBruto;
 
+	
+	@JsonBackReference
 	@ManyToMany
 	@JoinTable(name = "PECA_CARRO",
 		joinColumns = @JoinColumn(name = "peca_id"),
