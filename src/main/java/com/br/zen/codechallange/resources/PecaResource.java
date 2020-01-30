@@ -1,29 +1,30 @@
 package com.br.zen.codechallange.resources;
 
-import java.util.ArrayList;
-import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.br.zen.codechallange.domain.Peca;
+import com.br.zen.codechallange.services.PecaService;
 
 @RestController
-@RequestMapping(value="/pecas")
+@RequestMapping(value = "/pecas")
 public class PecaResource {
-	
-	@RequestMapping(method = RequestMethod.GET)
-	public List<Peca> listar() {
-		
-		Peca peca1 = new Peca(1, "Polia", 2.22, 3.222);
-		Peca peca2 = new Peca(2, "Roda", 33.22, 5.11222);
-		
-		List<Peca> pecas = new ArrayList<Peca>();
-		pecas.add(peca1);
-		pecas.add(peca2);
-		
-		return pecas;
+
+	@Autowired
+	private PecaService pecaService;
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public ResponseEntity<?> searchOne(@PathVariable Integer id) {
+
+		Peca obj = pecaService.searchById(id);
+
+		return ResponseEntity.ok().body(obj);
+
 	}
 
 }
