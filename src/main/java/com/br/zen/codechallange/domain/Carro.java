@@ -8,38 +8,29 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 @Entity
-public class Peca implements Serializable {
+public class Carro implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
-	private Double pesoLiquido;
-	private Double pesoBruto;
 
-	@ManyToMany
-	@JoinTable(name = "PECA_CARRO",
-		joinColumns = @JoinColumn(name = "peca_id"),
-		inverseJoinColumns = @JoinColumn(name = "carro_id")
-	)
-	List<Carro> carros = new ArrayList<>();
+	@ManyToMany(mappedBy = "carros")
+	private List<Peca> pecas = new ArrayList<>();
 
-	public Peca() {
+	public Carro() {
 
 	}
 
-	public Peca(Integer id, String nome, Double pesoLiquido, Double pesoBruto) {
+	public Carro(Integer id, String nome) {
 		super();
 		this.id = id;
 		this.nome = nome;
-		this.pesoLiquido = pesoLiquido;
-		this.pesoBruto = pesoBruto;
 	}
 
 	public Integer getId() {
@@ -58,28 +49,12 @@ public class Peca implements Serializable {
 		this.nome = nome;
 	}
 
-	public Double getPesoLiquido() {
-		return pesoLiquido;
+	public List<Peca> getPecas() {
+		return pecas;
 	}
 
-	public void setPesoLiquido(Double pesoLiquido) {
-		this.pesoLiquido = pesoLiquido;
-	}
-
-	public Double getPesoBruto() {
-		return pesoBruto;
-	}
-
-	public void setPesoBruto(Double pesoBruto) {
-		this.pesoBruto = pesoBruto;
-	}
-
-	public List<Carro> getCarros() {
-		return carros;
-	}
-
-	public void setCarros(List<Carro> carros) {
-		this.carros = carros;
+	public void setPecas(List<Peca> pecas) {
+		this.pecas = pecas;
 	}
 
 	@Override
@@ -98,7 +73,7 @@ public class Peca implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Peca other = (Peca) obj;
+		Carro other = (Carro) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
