@@ -21,12 +21,15 @@ public class PecaResource {
 	private PecaService pecaService;
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<?> searchOne(@PathVariable Integer id) throws ObjectNotFoundException {
-
+	public ResponseEntity<Peca> searchOne(@PathVariable Integer id) throws ObjectNotFoundException {
 		Peca obj = pecaService.searchById(id);
-
 		return ResponseEntity.ok().body(obj);
-
 	}
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<Void> delete(@PathVariable Integer id) throws ObjectNotFoundException {
+		pecaService.delete(id);
+		return ResponseEntity.noContent().build();
+	}
+	
 
 }

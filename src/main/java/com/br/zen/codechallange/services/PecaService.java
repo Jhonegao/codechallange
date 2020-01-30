@@ -20,4 +20,9 @@ public class PecaService {
 		Optional<Peca> obj = pecaRepo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Não Cadastrado Id: " + id + ", Peca:" + Peca.class.getName()));		
 	}
+	
+	public void delete(Integer id) throws ObjectNotFoundException {
+		searchById(id);
+		pecaRepo.deleteById(id);
+	}
 }
