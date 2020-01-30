@@ -16,10 +16,12 @@ public class CarroService {
 	private CarroRepository carroRepo;
 	
 	public Carro searchById(Integer id) {
-
-		Optional<Carro> obj = carroRepo.findById(id);
-		
-		return obj.orElse(null);
-		
+		Optional<Carro> obj = carroRepo.findById(id);		
+		return obj.orElse(null);		
+	}
+	
+	public Carro insert(Carro obj) {
+		obj.setId(null);
+		return carroRepo.save(obj);
 	}
 }
