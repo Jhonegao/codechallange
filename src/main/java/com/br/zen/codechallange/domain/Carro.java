@@ -11,6 +11,8 @@ import javax.persistence.Id;
 
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Carro implements Serializable {
 
@@ -21,6 +23,7 @@ public class Carro implements Serializable {
 	private Integer id;
 	private String nome;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "carro")
 	private List<Peca> pecas = new ArrayList<>();
 

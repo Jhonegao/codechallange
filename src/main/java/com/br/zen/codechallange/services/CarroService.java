@@ -5,7 +5,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.br.zen.codechallange.DTO.CarroDTO;
+import com.br.zen.codechallange.DTO.PecaDTO;
 import com.br.zen.codechallange.domain.Carro;
+import com.br.zen.codechallange.domain.Peca;
 import com.br.zen.codechallange.repositories.CarroRepository;
 
 
@@ -23,5 +26,9 @@ public class CarroService {
 	public Carro insert(Carro obj) {
 		obj.setId(null);
 		return carroRepo.save(obj);
+	}
+	
+	public Carro fromDTO(CarroDTO objDTO) {		
+		return new Carro(objDTO.getId(), objDTO.getNome());
 	}
 }
