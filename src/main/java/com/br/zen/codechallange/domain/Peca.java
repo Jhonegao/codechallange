@@ -1,18 +1,16 @@
 package com.br.zen.codechallange.domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 public class Peca implements Serializable {
@@ -25,25 +23,22 @@ public class Peca implements Serializable {
 	private Double pesoLiquido;
 	private Double pesoBruto;
 
-	
+	@ManyToOne
 	@JsonIgnore
-	@ManyToMany
-	@JoinTable(name = "PECA_CARRO",
-		joinColumns = @JoinColumn(name = "peca_id"),
-		inverseJoinColumns = @JoinColumn(name = "carro_id")
-	)
-	List<Carro> carros = new ArrayList<>();
+	@JoinColumn(name = "carro_id")
+	private Carro carro;
 
 	public Peca() {
 
 	}
 
-	public Peca(Integer id, String nome, Double pesoLiquido, Double pesoBruto) {
+	public Peca(Integer id, String nome, Double pesoLiquido, Double pesoBruto, Carro carro) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.pesoLiquido = pesoLiquido;
 		this.pesoBruto = pesoBruto;
+		this.carro = carro;
 	}
 
 	public Integer getId() {
@@ -78,12 +73,12 @@ public class Peca implements Serializable {
 		this.pesoBruto = pesoBruto;
 	}
 
-	public List<Carro> getCarros() {
-		return carros;
+	public Carro getCarro() {
+		return carro;
 	}
 
-	public void setCarros(List<Carro> carros) {
-		this.carros = carros;
+	public void setCarro(Carro carro) {
+		this.carro = carro;
 	}
 
 	@Override

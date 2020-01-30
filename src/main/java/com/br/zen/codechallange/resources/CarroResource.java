@@ -1,6 +1,5 @@
 package com.br.zen.codechallange.resources;
 
-import java.lang.reflect.Method;
 import java.net.URI;
 
 import org.springframework.beans.factory.annotation.Autowired;

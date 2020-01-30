@@ -8,7 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+
+import javax.persistence.OneToMany;
 
 @Entity
 public class Carro implements Serializable {
@@ -19,12 +20,11 @@ public class Carro implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
-	
-	@ManyToMany(mappedBy = "carros")
-	private List<Peca> pecas = new ArrayList<>();
-	
-	public Carro() {
 
+	@OneToMany(mappedBy = "carro")
+	private List<Peca> pecas = new ArrayList<>();
+
+	public Carro() {
 	}
 
 	public Carro(Integer id, String nome) {

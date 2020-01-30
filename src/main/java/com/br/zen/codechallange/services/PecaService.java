@@ -1,5 +1,6 @@
 package com.br.zen.codechallange.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,5 +25,9 @@ public class PecaService {
 	public void delete(Integer id) throws ObjectNotFoundException {
 		searchById(id);
 		pecaRepo.deleteById(id);
+	}
+	
+	public List<Peca> findAll(){
+		return pecaRepo.findAll();
 	}
 }
