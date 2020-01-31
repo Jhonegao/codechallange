@@ -3,15 +3,11 @@ package com.br.zen.codechallange.domain;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
 import javax.persistence.OneToMany;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Carro implements Serializable {
@@ -23,7 +19,6 @@ public class Carro implements Serializable {
 	private Integer id;
 	private String nome;
 
-	@JsonIgnore
 	@OneToMany(mappedBy = "carro")
 	private List<Peca> pecas = new ArrayList<>();
 

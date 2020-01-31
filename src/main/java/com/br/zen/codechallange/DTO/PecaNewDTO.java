@@ -1,42 +1,31 @@
 package com.br.zen.codechallange.DTO;
 
 import java.io.Serializable;
-
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+
 import org.hibernate.validator.constraints.Length;
-import com.br.zen.codechallange.domain.Peca;
 
-public class PecaDTO implements Serializable {
+public class PecaNewDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-
+	@NotEmpty(message="Preenchimento obrigatorio")
+	@Length(min= 3, max=200, message="Tamanho minimo de 3 e máximo de 200 characteres")
 	private String nome;
-	@NotEmpty(message="Preenchimento obrigatorio")
-	@Length(min= 3, max=200, message="Peso Liquido nao pode ser maior que o peso Bruto")
+	@NotNull
 	private Double pesoLiquido;
-	@NotEmpty(message="Preenchimento obrigatorio")
-	@Length(min= 3, max=200, message="Peso Liquido nao pode ser maior")
+	@NotNull
 	private Double pesoBruto;
-	@NotNull(message = "Deve se vincular a um modelo de carro")
-	private String carro;
-
-	public PecaDTO() {
-	}
-
-	public PecaDTO(Peca obj) {
-
-		id = obj.getId();
-		nome = obj.getNome();
-		pesoLiquido = obj.getPesoLiquido();
-		pesoBruto = obj.getPesoBruto();
-		carro = obj.getCarro().getNome();
+	@NotNull
+	private Integer carroId;
+	
+	public PecaNewDTO() {
 	}
 
 	public Integer getId() {
@@ -71,13 +60,12 @@ public class PecaDTO implements Serializable {
 		this.pesoBruto = pesoBruto;
 	}
 
-	public String getCarro() {
-		return carro;
+	public Integer getCarroId() {
+		return carroId;
 	}
 
-	public void setCarro(String carro) {
-		this.carro = carro;
+	public void setCarroId(Integer carroId) {
+		this.carroId = carroId;
 	}
-
-
+	
 }
