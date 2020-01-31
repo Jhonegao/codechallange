@@ -22,6 +22,10 @@ public class PecaService {
 		return obj.orElseThrow(() -> new ObjectNotFoundException
 				("Não Cadastrado Id: " + id + ", Peca:" + Peca.class.getName()));
 	}
+	
+	public List<Peca> findByCarro(Integer carroId){
+		return pecaRepo.findPecas(carroId);
+	}
 
 	public Peca insert(Peca obj) {
 		obj.setId(null);
