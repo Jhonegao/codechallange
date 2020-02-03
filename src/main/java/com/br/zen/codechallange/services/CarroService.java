@@ -5,10 +5,13 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
+
 import com.br.zen.codechallange.DTO.CarroNewDTO;
 import com.br.zen.codechallange.domain.Carro;
 import com.br.zen.codechallange.repositories.CarroRepository;
 
+@CrossOrigin
 @Service
 public class CarroService {
 

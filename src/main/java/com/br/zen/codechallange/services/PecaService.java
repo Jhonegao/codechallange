@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
+
 import com.br.zen.codechallange.DTO.PecaNewDTO;
 import com.br.zen.codechallange.domain.Carro;
 import com.br.zen.codechallange.domain.Peca;
@@ -11,6 +13,7 @@ import com.br.zen.codechallange.repositories.PecaRepository;
 
 import javassist.tools.rmi.ObjectNotFoundException;
 
+@CrossOrigin
 @Service
 public class PecaService {
 
